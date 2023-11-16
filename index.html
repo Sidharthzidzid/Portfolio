@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sidharth v nair</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding:0;
+        }
+
+        .profile-pic {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: 10px solid transparent;
+            border-radius: 50%;
+            overflow: hidden;
+            padding: 10;
+            z-index: -1;
+            animation: glow 1s infinite alternate;
+        }
+
+        .profile-pic img {
+            width: 250px;
+            height: 250px;
+            padding: 10;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 0, 255, 0.3), 0 0 20px rgba(255, 0, 0, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(0, 0, 255, 0.7), 0 0 20px rgba(255, 0, 0, 0.7);
+            }
+        }
+
+        header {
+            padding: 10px; /* Smaller padding for the header */
+            position: sticky;
+            top: 0;
+            z-index: 0;
+        }
+
+        header h1 {
+            font-size: 24px; /* Smaller font size for the header title */
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #18191f;
+    z-index: 3;
+    padding: 10px;
+}
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -5cm;
+            width: 5cm;
+            height: 20%;
+            background-color:#18191f ; /* Change background color to glowing purple */
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            overflow-y: auto;
+            transition: 0.5s;
+            z-index: 3;
+            animation: glow 1s infinite alternate; /* Add the same shadow effect */
+        }
+
+        .menu a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: #444;
+            border-bottom: 2px solid red;
+            box-shadow: 0 0 20px rgba(128, 42, 226, 0.7); /* Add the same shadow effect on hover */
+        }
+
+        .menu::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            border: 10px solid transparent;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(128, 42, 226, 0.7); /* Add the same shadow effect */
+            animation: glow 1s infinite alternate; /* Add the same shadow effect */
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            position: fixed; /* Position the menu icon as fixed for the top right corner */
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #8A2BE2;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cross-icon {
+            transform: rotate(45deg);
+        }
+
+        .menu-is-open {
+            left: 0;
+        }
+
+        h3 {
+            font-size: 40px; /* Change the font size to 24px or your preferred size */
+        }
+
+        h4 {
+            font-size: 50px;
+        }
+
+        h3::first-letter {
+            font-size: 200%;
+            color: #8A2BE2;
+        }
+
+        h4::first-letter {
+            font-size: 150%;
+            color: #8A2BE2;
+        }
+        h3 {
+    
+    animation: gllow 1s infinite alternate;
+}
+h4 {
+    animation: gllow 1s infinite alternate;
+}
+ @keyframes gllow {
+    0% {
+        text-shadow: 0 0 20px rgba(255, 0, 0, 0.3), 0 0 20px rgba(255, 0, 0, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7);
+    }
+}
+p1 {
+    color: #8A2BE2;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7);
+    }
+:root {
+  --bg-color: rgb(0, 0, 0);
+  --card-color: rgb(0, 0, 0);
+}
+
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: calc(100% - 20px);
+}
+#cards:hover > .card::after {
+  opacity: 1;
+}
+
+.card {
+  background-color: #616268;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  height: 260px;
+  flex-direction: column;
+  position: relative;
+  width: 300px;  
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card::before,
+.card::after {
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.card::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(186, 186, 186, 0.673),
+    transparent 40%
+  );
+  z-index: 3;
+}
+
+.card::after {  
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.4),
+    transparent 40%
+  );
+  z-index: 1;
+}
+
+.card > .card-content {
+  background-color: var(--card-color);
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  inset: 1px;
+  padding: 10px;
+  position: absolute;
+  z-index: 2;
+}
+
+/* -- ↓ ↓ ↓ extra card content styles ↓ ↓ ↓ -- */
+
+h1, h2, h3, h4, span {
+  color: rgb(240, 240, 240);
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  margin: 0px;
+}
+
+i {  
+  color: rgb(240, 240, 240);
+}
+
+.card-image {
+  align-items: center;
+  display: flex;
+  height: 140px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-image > i {
+  font-size: 6em;
+  opacity: 0.25;
+}
+
+.card-info-wrapper {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+  padding: 0px 20px;
+}
+
+.card-info {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+}
+
+.card-info > i {  
+  font-size: 1em;
+  height: 20px;
+  line-height: 20px;
+}
+
+.card-info-title > h3 {
+  font-size: 1.1em;
+  line-height: 20px;
+}
+
+.card-info-title > h4 {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85em;
+  margin-top: 8px;
+}
+
+/* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
+
+@media(max-width: 1000px) {
+  body {
+    align-items: flex-start;  
+    overflow: auto;
+  }
+  
+  #cards {    
+    max-width: 1000px;
+    padding: 10px 0px;
+  }
+  
+  .card {
+    flex-shrink: 1;
+    width: calc(50% - 4px);
+  }
+}
+
+@media(max-width: 500px) {
+  .card {
+    height: 180px;
+  }
+  
+  .card-image {
+    height: 80px;  
+  }
+  
+  .card-image > i {
+    font-size: 3em;
+  }
+    
+  .card-info-wrapper {
+    padding: 0px 10px;
+  }
+  
+  .card-info > i { 
+    font-size: 0.8em; 
+  }
+  
+  .card-info-title > h3 {
+    font-size: 0.9em;
+  }
+
+  .card-info-title > h4 {
+    font-size: 0.8em;
+    margin-top: 4px;
+  }
+}
+
+@media(max-width: 320px) {
+  .card {
+    width: 100%;
+  }
+}
+p1 {
+    z-index: 2;
+}
+#submit-form input[type="submit"]:hover {
+    background-color: #8A2BE2; /* Purple color for hover */
+    color: #fff; /* Text color in white for contrast */
+    border-radius: 29px;
+} 
+#contact {
+  text-align: left; /* Align the entire contact section to the left */
+  margin: 20px; /* Add some margin for spacing */
+}
+.contact-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-item {
+  margin: 10px 0;
+}
+
+.contact-item label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.contact-item input,
+.contact-item textarea {
+  width: 100%;
+  padding: 5px;
+}
+
+.contact-item input[type="submit"] {
+  background-color: #8A2BE2;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-item input[type="submit"]:hover {
+  background-color: #4A2BE9; /* Purple color for hover */
+}
+
+.contact-item textarea {
+  resize: vertical;
+  height: 170px;
+}
+
+.contact-item input[type="submit"] {
+  width: auto;
+  border-radius: 29px;
+}
+  </style>
+</head>
+<body>
+    <div class="profile-pic">
+        <img src="https://avatars.githubusercontent.com/u/122723720?s=400&u=392bd389e80bee8511f2ba9019f364b2c80294ea&v=4" alt="Profile Picture">
+    </div>
+    <div class="menu">
+        <a href="#about">  <font color="#4A2BE9">A</font>bout</a>
+        <a href="#portfolio"><font color="#4A2BE9">P</font>ortfolio</a>
+         <a href="#badge"><font color="#4A2BE9">B</font>adge</a>
+        <a href="#contact"><font color="#4A2BE9">C</font>ontact</a>
+          <a href="#home"><font color="#4A2BE9">H</font>ome</a>
+    </div>
+    <span class="menu-icon" id="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    <main>
+<h3 id="home"></h3><h4></h4> 
+    <br>
+    <br>
+    
+     <h3 id="about"><font color="#8A2BE2">A</font>bout Me</h3>
+     <br>
+        <p1>I completed my upper secondary education in state school kerala.
+Now I am doing my B.E.  in computer science and engineering  in A J Institute of Engineering and Technology.
+I like to do computer programming and I'm interested in doing project works.  I participated in many exhibition.
+I have some basic knowledge about electronics. So I use my knowledge in both electronics and computer programming to do my project.
+And the other areas in which I'm interested is in sports. I like to play badminton. I'm not a professional player but I know to play.
+
+some of my specialities are I am good at typing so it will help me to do programme faster.
+I know to create android application using block programming software.
+
+So that's me thank you.</p1>
+<br>
+<br>
+        <h3 id="portfolio"><font color="#8A2BE2">P</font>ortfolio</h3>
+        <br>
+        <div id="cards">
+  <div class="card" id="card" onclick="location.href='https://github.com/Sidharthzidzid/Python/blob/main/Motion%20detection.py';">
+  <div class="card-content">
+    <div class="card-image">
+      <img src="https://www.pistalix.in/wp-content/uploads/2018/11/raspberry-pi.gif" alt="Card Image 1" style="width: px; height: 200px">
+    </div>
+    <div class="card-info-wrapper">
+      <div class="card-info">
+        <div class="card-info-title">
+          <h3>Motion_detection</h3>
+          <h4>python program for Motion_detection security camera using RaspberryPi.</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="card" onclick="location.href='https://github.com/Sidharthzidzid/Code-language-generator.git';">
+  <div class="card-content">
+    <div class="card-image">
+      <img src="https://i.gifer.com/24Br.gif" alt="Card Image 1"style="width: px; height: 250px">
+    </div>
+    <div class="card-info-wrapper">
+      <div class="card-info">
+        <div class="card-info-title">
+          <h3>Code-language-generator</h3>
+          <h4>HTML code for making custom secret language</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="card" onclick="location.href='https://github.com/Sidharthzidzid/Weather-website';">
+  <div class="card-content">
+    <div class="card-image">
+      <img src="https://i.pinimg.com/originals/a1/e0/e8/a1e0e82e1cf23a9036e98ba202749edd.gif" alt="Card Image 1"style="width: px; height: 250px">
+    </div>
+    <div class="card-info-wrapper">
+      <div class="card-info">
+        <div class="card-info-title">
+          <h3>Weather-website</h3>
+          <h4>Simple HTML code for making a weather showing website</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="card" onclick="location.href='https://github.com/Sidharthzidzid/Guess-the-Number';">
+  <div class="card-content">
+    <div class="card-image">
+      <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230612145726/gfg.gif" alt="Card Image 1"
+      style="width: px; height: 200px">
+    </div>
+    <div class="card-info-wrapper">
+      <div class="card-info">
+        <div class="card-info-title">
+          <h3>Guess the Number</h3>
+          <h4>A simple guess the number game made using html and JavaScript</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <div class="card" id="card" onclick="location.href='https://github.com/Sidharthzidzid/Tic-Tac-Toe';">
+  <div class="card-content">
+    <div class="card-image">
+      <img src="https://talk.pokitto.com/uploads/default/original/2X/d/dff475b5da3e2ba63537fb3d9b9f34d6be6d9d54.gif" alt="Card Image 1"style="width: px; height: 250px">
+    </div>
+    <div class="card-info-wrapper">
+      <div class="card-info">
+        <div class="card-info-title">
+          <h3>Tic-Tac-Toe</h3>
+          <h4>HTML code for Tic-Tac-Toe game</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="card" onclick="location.href='https://github.com/Sidharthzidzid/Stopwatch';">
+  <div class="card-content">
+    <div class="card-image">
+      <img src="https://github.com/Sidharthzidzid/Stopwatch/assets/122723720/542593f4-a222-43ed-9924-a3665534af82" alt="Card Image 1"style="width: px; height: 200px">
+    </div>
+    <div class="card-info-wrapper">
+      <div class="card-info">
+        <div class="card-info-title">
+          <h3>Stopwatch</h3>
+          <h4>HTML code for making Stopwatch</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+        <div style="height: 100px;"></div>
+<h3 id="badge"><font color="#8A2BE2">B</font>adge</h3>
+     <img  src="https://holopin.me/sidharthzidzid"
+         style="width: 580px0px; height: 250px;"
+          usemap="#imagemap" alt="Clickable Image">
+<map name="imagemap">
+    <area shape="rect" coords="0,0,200,150" href="https://holopin.io/@sidharthzidzid" alt="First Link">
+    <area shape="rect" coords="200,0,400,150" href="https://holopin.io/@sidharthzidzid" alt="Second Link">
+</map>
+ <h3 id="contact"><font color="#8A2BE2">C</font>ontact</h3>
+                <a href="https://www.linkedin.com/in/sidharth-v-nair-aa2111256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img alt="Static Badge" src="https://img.shields.io/badge/LinkedIn-blue?style=social&logo=linkedin"/></a>
+<a href="https://instagram.com/sidharth_v_nair?igshid=NGVhN2U2NjQ0Yg=="><img alt="Static Badge" src="https://img.shields.io/badge/Instagram-blue%20?style=social&logo=instagram&logoColor=red-blue"/></a>
+<a href="https://x.com/SidharthVNair?t=BsOCmC649VZYq53bd6qExQ&s=09"><img alt="Static Badge" src="https://img.shields.io/badge/twitter-blue?style=social&logo=X"/></a>
+<a href="mailto:sidharthvnair3@gmail.com"><img alt="Static Badge" src="https://img.shields.io/badge/Email-blue?style=social&logo=Gmail&logoColor=Red"/></a>
+        <div class="row">
+          
+          <div class="column">
+            <form id="submit-form" action="">
+            
+            
+            
+             <div id="contact">
+  <div class="contact-container">
+    <div class="contact-item">
+      <label for="fname">Name</label>
+      <input type="text" id="fname" name="name"required placeholder="Your name..">
+    </div>
+<div class="contact-item">
+  E-mail<input type="email" id="myEmail" name="email" required placeholder="example@gmail.com">
+</div>
+    <div class="contact-item">
+      <label for="subject">Subject</label>
+      <textarea id="subject" name="message" required placeholder="Write something.." style="height:170px"></textarea>
+    </div>
+    <div class="contact-item">
+      <input type="submit" value="Submit">
+    </div>
+  </div>
+</div>
+            </form>
+                 <div id="loading-circle" class="hidden">
+  <div class="loader"></div>
+</div>
+          </div>
+          <div class="column">
+            <br>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+        &copy; 2023 Sidharth v nair
+    </footer>
+    <script>
+        var menu = document.querySelector('.menu');
+        var menuIcon = document.getElementById('menu-icon');
+
+        function toggleMenu() {
+            menu.classList.toggle('menu-is-open');
+            menuIcon.classList.toggle('cross-icon');
+        }
+        document.getElementById("cards").onmousemove = e => {
+  for(const card of document.getElementsByClassName("card")) {
+    const rect = card.getBoundingClientRect(),
+          x = e.clientX - rect.left,
+          y = e.clientY - rect.top;
+
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+}
+function typeEffect() {
+  const h3Element = document.getElementById("home");
+  const h4Element = document.querySelector("h4");
+  const h3Text = "HI";
+  const h4Text = "I'm Sidharth-V-Nair!";
+  let h3Index = 0;
+  let h4Index = 0;
+
+  function typeH3() {
+    if (h3Index < h3Text.length) {
+      h3Element.innerHTML += h3Text.charAt(h3Index);
+      h3Index++;
+      setTimeout(typeH3, 100); // Adjust typing speed here (in milliseconds)
+    } else if (h4Index === 0) {
+      typeH4();
+    }
+  }
+
+  function typeH4() {
+    if (h4Index < h4Text.length) {
+      h4Element.innerHTML += h4Text.charAt(h4Index);
+      h4Index++;
+      setTimeout(typeH4, 100); // Adjust typing speed here (in milliseconds)
+    }
+  }
+
+  typeH3();
+}
+
+typeEffect(); // Call the function to start the typing effect
+       $("#submit-form").submit((e) => {
+  e.preventDefault();
+  
+  // Show the loading circle and hide the submit button
+  $("#loading-circle").removeClass("hidden");
+  $("#submit-form input[type='submit']").hide();
+  
+  $.ajax({
+    url: "https://script.google.com/macros/s/AKfycbyWihai1Sz3EoTCEENx6PTqImeTCZbZvCYv4uWNqBS5Yz7ZgXnjMtGxcDJT3JXiCqdLtw/exec",
+    data: $("#submit-form").serialize(),
+    method: "post",
+    success: function (response) {
+      alert("Form submitted successfully");
+      window.location.reload();
+      //window.location.href="https://google.com"
+    },
+    error: function (err) {
+      alert("Something Error");
+    },
+    complete: function () {
+      // Hide the loading circle and show the submit button when the request is complete
+      $("#loading-circle").addClass("hidden");
+      $("#submit-form input[type='submit']").show();
+    }
+  });
+});
+    </script>
+</body>
+</html>
